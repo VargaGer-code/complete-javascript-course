@@ -1,5 +1,7 @@
 'use strict';
 
+//Line just for test
+
 // Elements
 const diceEL = document.querySelector('.dice');
 const playerScoresEL = document.querySelectorAll('.score');
