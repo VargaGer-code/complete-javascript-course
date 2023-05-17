@@ -7,6 +7,7 @@ const score0El = document.querySelector('#score--0');
 const score1El = document.querySelector('#score--1');
 const current0El = document.getElementById('current--0');
 const current1El = document.getElementById('current--1');
+const winnerName = document.querySelector('.winnersname');
 
 // Selecting dice, btn elements
 const diceEl = document.querySelector('.dice');
@@ -14,15 +15,19 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
+const randomizeStartingPlayer = function () {
+  return Math.floor(Math.random() * 2);
+};
+
 // Declare variables and than assign values to them in the init function
 let scores, currentScore, activePlayer, playing, pointsToWin;
 
 // Starting conditions
 const init = function () {
-  pointsToWin = 100;
+  pointsToWin = 10;
   scores = [0, 0];
   currentScore = 0;
-  activePlayer = 0;
+  activePlayer = randomizeStartingPlayer();
   playing = true;
 
   score0El.textContent = 0;
@@ -31,10 +36,16 @@ const init = function () {
   current1El.textContent = 0;
 
   diceEl.classList.add('hidden');
+  //winnerName.classList.add('hidden');
   player0El.classList.remove('player--winner');
   player1El.classList.remove('player--winner');
-  player0El.classList.add('player--active');
-  player1El.classList.remove('player--winner');
+  player0El.classList.remove('player--active');
+  player1El.classList.remove('player--active');
+
+  // Player element depends on starting player
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.add('player--active');
 };
 
 const switchPlayer = function () {
@@ -82,6 +93,8 @@ btnHold.addEventListener('click', function () {
       // Finish game
       playing = false;
       diceEl.classList.add('hidden');
+      winnerName.textContent = `Player ${activePlayer + 1} win!`;
+      winnerName.classList.remove('hidden');
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');

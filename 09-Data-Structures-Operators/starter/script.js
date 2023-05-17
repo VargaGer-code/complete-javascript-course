@@ -26,4 +26,31 @@ const restaurant = {
       close: 24,
     },
   },
+  orderPizza: function ({ address, starter, main }) {
+    console.log(address, starter, main);
+  },
 };
+
+const myOrder = {
+  address: 'szhb',
+  main: 1,
+  starter: 2,
+};
+
+restaurant.orderPizza(myOrder);
+
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+// Mutating variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
+
+// Nested objects
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
