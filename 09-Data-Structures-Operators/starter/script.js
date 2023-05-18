@@ -30,46 +30,31 @@ const restaurant = {
       close: 24,
     },
   },
+  orderPizza: function ({ address, starter, main }) {
+    console.log(address, starter, main);
+  },
 };
 
-const [starter, main] = restaurant.order(2, 0);
-console.log(starter, main);
-
-const arr2 = [3, 4, 5];
-const arr3 = ['a', 'b', 'c'];
-const newArr = [1, 2, ...arr2];
-
-console.log(newArr);
-console.log(...newArr);
-
-let mergedArrays = [...arr2, ...arr3];
-console.log('mergedArrays :: ' + mergedArrays);
-
-const str = 'epic text';
-const spreadStr = [...str];
-console.log(spreadStr);
-
-const arrayFood = ['apple', 'pear', 'orange'];
-
-const writeIt = function (arg1, arg2, arg3) {
-  console.log(`Here are the fruits: ${arg1}, ${arg2}, ${arg3}`);
+const myOrder = {
+  address: 'szhb',
+  main: 1,
+  starter: 2,
 };
 
-writeIt(...arrayFood);
+restaurant.orderPizza(myOrder);
 
-const [a, , , b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
 
-// REST pattern
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
-  console.log(sum);
-};
+// Mutating variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
 
-add(1, 2, 4);
-add(1, 2, 4, 5, 6);
-
-restaurant.orer && restaurant.order('cheese', 'tomato');
-
-console.log(0 ?? 10);
+// Nested objects
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
